@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#game-container {
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#piano-keys {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 420px; /* 7 white keys * 60px */
+    height: 200px;
+}
+
+.piano-key {
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    transition: background-color 0.2s, transform 0.1s;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.white-key {
+    width: 60px;
+    height: 200px;
+    background-color: #ffffff;
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+}
+
+.black-key {
+    width: 40px;
+    height: 120px;
+    background-color: #000000;
+    border-radius: 0 0 3px 3px;
+    position: absolute;
+    z-index: 2;
+}
+
+.black-key:hover {
+    background-color: #333333;
+}
+
+.black-key:active, .black-key.pressed {
+    background-color: #555555;
+    transform: scale(0.98);
+}
+
+.white-key:hover {
+    background-color: #f0f0f0;
+}
+
+.white-key:active, .white-key.pressed {
+    background-color: #d0d0d0;
+    transform: scale(0.98);
+}
+
+/* Positioning black keys */
+#key-c-sharp { left: 45px; }
+#key-d-sharp { left: 105px; }
+#key-f-sharp { left: 225px; }
+#key-g-sharp { left: 285px; }
+#key-a-sharp { left: 345px; }
+
+#stage-complete-message, #all-stages-complete-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 26px;
+    font-weight: 700;
+    color: #28a745;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px 30px;
+    border-radius: 12px;
+    z-index: 10;
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+    max-width: 90%;
+}
+
+#stage-complete-message.show, #all-stages-complete-message.show {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    background: #e9ecef;
+    padding: 8px 16px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 600px) {
+    #piano-keys {
+        width: 280px; /* 7 white keys * 40px */
+        height: 150px;
+    }
+    .white-key {
+        width: 40px;
+        height: 150px;
+    }
+    .black-key {
+        width: 26px;
+        height: 90px;
+    }
+    #key-c-sharp { left: 30px; }
+    #key-d-sharp { left: 70px; }
+    #key-f-sharp { left: 150px; }
+    #key-g-sharp { left: 190px; }
+    #key-a-sharp { left: 230px; }
+    #status {
+        font-size: 16px;
+        padding: 6px 12px;
+    }
+    #stage-complete-message, #all-stages-complete-message {
+        font-size: 20px;
+        padding: 15px 20px;
+        max-width: 85%;
+    }
+}
